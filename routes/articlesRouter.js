@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controllers = require("../controllers/articlesController");
+const authMW = require("./../authorization/authorization")
 
 /* GET home page. */
 // router.get('/', function(req, res, next) {
@@ -9,7 +10,7 @@ const controllers = require("../controllers/articlesController");
 router
   .route("/Articles")
   .get(controllers.getArticles)
-  .post(controllers.addArticles)
+  .post(authMW, controllers.addArticles)
   .put(controllers.updateArticles)
   .delete(controllers.deleteArticles);
 module.exports = router;

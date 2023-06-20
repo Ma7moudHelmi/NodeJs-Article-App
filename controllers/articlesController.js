@@ -22,9 +22,8 @@ exports.addArticles = (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     articleTxt: req.body.articleTxt,
     articleTime: Date(),
-    nLike: 0,
-    nComments: 0,
-    author: req.body.author,
+    nComments: {text:req.body.nComments,authorId:req.loginId},
+    author: req.loginId,
   });
   articleData
     .save()

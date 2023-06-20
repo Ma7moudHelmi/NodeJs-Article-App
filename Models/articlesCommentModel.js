@@ -11,7 +11,7 @@ const articlesCommentModel = mongoose.Schema({
 });
 
 /**
- * to check if refernce id exist
+ * to check if reference id exist
  */
 
  articlesCommentModel.path("authorId").validate(async (value) => {
