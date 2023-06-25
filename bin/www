@@ -19,7 +19,7 @@ let server = http.createServer(app);
 /**
  * Get port from environment and store in Express.
  */
-let port = normalizePort(process.env.PORT || "3000");
+let port = normalizePort( "3000");
 app.set("port", port);
 
 /**
@@ -30,7 +30,6 @@ mongoose
   .connect("mongodb://127.0.0.1:27017/ArticleDB")
   .then(() => {
     console.log("Connected To Database");
-    
     // Listen on provided port, on all network interfaces.
     server.listen(port);
     server.on("error", onError);

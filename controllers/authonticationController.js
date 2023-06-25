@@ -3,7 +3,7 @@ const {validationResult} = require("express-validator")
 
 const usersDataModel = require("../Models/usersDataModel");
 const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 
 exports.addLogin = (req, res, next) => {
     let result = validationResult(req);

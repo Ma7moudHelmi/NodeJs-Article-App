@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sign In</title>
+    <style>
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 60px;
+            width: fit-content;
+            border: 1px solid gray;
+            border-radius: 20px;
+            transition: 0.5s;
+        }
+
+        .content:hover {
+            cursor: pointer;
+            background-color: honeydew;
+        }
+
+        img {
+            padding-right: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+<form action="http://localhost:3000/auth/google" method="get" style="width: 50%;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;">
+    <label>Authentication With Google</label>
+    <br/>
+    <br/>
+    <button class="content">
+        <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="google"/>
+        <span>Sign up Using Google</span>
+    </button>
+</form>
+</body>
+</html>

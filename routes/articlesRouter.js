@@ -8,9 +8,10 @@ const authMW = require("./../authorization/authorization")
 //   res.render('index', { title: 'Express' });
 // });
 router
-  .route("/Articles")
-  .get(controllers.getArticles)
-  .post(authMW, controllers.addArticles)
-  .put(controllers.updateArticles)
-  .delete(controllers.deleteArticles);
+    .route("/Articles")
+    .get(controllers.getArticles)
+    .post(authMW, controllers.addArticles);
+router.put('/Articles/:blogId',authMW, controllers.updateArticles);
+router.delete('/Articles/:blogId',authMW,controllers.deleteArticles);
+
 module.exports = router;
