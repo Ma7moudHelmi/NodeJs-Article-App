@@ -1,9 +1,22 @@
 const mongoose = require("mongoose");
 const {validationResult} = require("express-validator")
+const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
+require('dotenv').config()
+// const cookieParser = require("cookie-parser");
 
 const usersDataModel = require("../Models/usersDataModel");
-const jwt = require("jsonwebtoken");
-// const cookieParser = require("cookie-parser");
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL_ADDRESS,
+        pass: process.env.EMAIL_PASSWORD,
+    },
+});
+transporter.verify().then(() => "true").catch((err) => {
+    throw new Error("transporter ERROR" + err.message)
+});
 
 exports.addLogin = (req, res, next) => {
     let result = validationResult(req);
@@ -34,8 +47,19 @@ exports.register = (req, res, next) => {
         email: req.body.email,
         password: req.body.password
     });
+    userData.save().then((data) => {
 
-    userData.save().then(() => {
-        res.json({message: "added successfully"});
+        return transporter.sendMail({
+            from: `Blog <e*****@gmail.com>`, // sender address
+            to: req.body.email, // list of receivers
+            subject: "sign up success", // Subject line
+            text: "There is a new article. It's about sending emails, check it out!", // plain text body
+            html: "<b>There is a new article. It's about sending emails, check it out!</b>", // html body
+        }).then(() => {
+            res.json({message: "added successfully"});
+
+        })
     }).catch(error => next(error))
+
+
 };

@@ -3,12 +3,13 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
-require("dotenv").config();
-const articlesRouter = require("./routes/articlesRouter");
-const usersRouter = require("./routes/usersRouter");
-const authonticationRouter = require("./routes/authonticationRouter");
 const passport = require("passport");
 
+const articlesRouter = require("./routes/articlesRouter");
+const usersRouter = require("./routes/usersRouter");
+const authenticationRouter = require("./routes/authonticationRouter");
+
+require('dotenv').config()
 require("./passportConfig")(passport);
 
 const app = express();
@@ -21,7 +22,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, "public")));
 
-app.use(authonticationRouter);
+app.use(authenticationRouter);
 app.use(usersRouter);
 app.use(articlesRouter);
 
